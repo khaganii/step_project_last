@@ -18,6 +18,6 @@ public class Main {
 
       fillingFiles.fillFlights();
       fillingFiles.fillBookings();
-      main_menu.showMenu();
+      //main_menu.showMenu();
     }
 }

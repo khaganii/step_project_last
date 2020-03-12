@@ -59,8 +59,8 @@ public class FillingFiles {
     List<Flight> flights = new ArrayList<>(flightDAO.getAll());
     StringBuilder sb = new StringBuilder();
     String b;
+    int k = 0;
     for (Flight f: flights) {
-      int k = 0;
       for (int i = 1; i <= (f.getAllSeats()-f.getFreeSeats()); i++) {
         k++;
         Booking booking = new Booking(k, MakePerson(), f);

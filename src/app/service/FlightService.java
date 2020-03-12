@@ -1,7 +1,6 @@
 package app.service;
 
 import app.console.ConsoleMain;
-import app.controller.FlightController;
 import app.dao.FlightDAO;
 import app.entities.Flight;
 import app.library.Main_Menu;
@@ -102,47 +101,47 @@ public class FlightService {
     return flightsByTickets;
   }
 
-//  public void backToMainMenu(){
-//    console.printLn("                 ===== Results Not Found =====               ");
-//    searching();
-//    console.printLn("Enter '0' (zero) to back 'MAIN MENU' !");
-//    console.printLn("Enter something! >>");
-//    if (console.readLn().equals("0")) main_menu.showMenu();
-//    else searching();
-//  }
-//
-//  public void searching(){
-//    console.printLn(" === Enter Destination Where you wanna go! === ");
-//    String destination = console.readLn();
-//    console.printLn("                 ===== Results for your destination =====               ");
-//    console.printLn("");
-//    List<Flight> flightsByDestination = new ArrayList<>(printSearchByDestination(destination.trim()));
-//
-//    if(flightsByDestination.size() != 0){
-//      console.printLn(" === Enter Date When you wanna go! Ex: (2020/03/11 YYYY/MM/DD) === ");
-//      String time = console.readLn();
-//      List<Flight> flightsByTime = new ArrayList<>(printSearchByTime(flightsByDestination, time.trim()));
-//
-//      if(flightsByTime.size() != 0){
-//        console.printLn(" === Enter Number of Tickets! === ");
-//        int tickets = menu_operations.enter_number();
-//        List<Flight> flightsByTicket = new ArrayList<>(printSearchByTickets(flightsByTime, tickets));
-//
-//        if (flightsByTicket.size() != 0){
-//          console.printLn("Start to book");
-//          //bookingController.book(tickets, flightsByTicket.get(0));
-//        }
-//        else {
-//          backToMainMenu();
-//        }
-//      }
-//      else {
-//        backToMainMenu();
-//      }
-//    }
-//    else {
-//      backToMainMenu();
-//    }
-//  }
+  public void backToMainMenu(){
+    console.printLn("                 ===== Results Not Found =====               ");
+    searching();
+    console.printLn("Enter '0' (zero) to back 'MAIN MENU' !");
+    console.printLn("Enter something! >>");
+    if (console.readLn().equals("0")) main_menu.showMenu();
+    else searching();
+  }
+
+  public void searching(){
+    console.printLn(" === Enter Destination Where you wanna go! === ");
+    String destination = console.readLn();
+    console.printLn("                 ===== Results for your destination =====               ");
+    console.printLn("");
+    List<Flight> flightsByDestination = new ArrayList<>(printSearchByDestination(destination.trim()));
+
+    if(flightsByDestination.size() != 0){
+      console.printLn(" === Enter Date When you wanna go! Ex: (2020/03/11 YYYY/MM/DD) === ");
+      String time = console.readLn();
+      List<Flight> flightsByTime = new ArrayList<>(printSearchByTime(flightsByDestination, time.trim()));
+
+      if(flightsByTime.size() != 0){
+        console.printLn(" === Enter Number of Tickets! === ");
+        int tickets = menu_operations.enter_number();
+        List<Flight> flightsByTicket = new ArrayList<>(printSearchByTickets(flightsByTime, tickets));
+
+        if (flightsByTicket.size() != 0){
+          console.printLn("Start to book");
+          //bookingController.book(tickets, flightsByTicket.get(0));
+        }
+        else {
+          backToMainMenu();
+        }
+      }
+      else {
+        backToMainMenu();
+      }
+    }
+    else {
+      backToMainMenu();
+    }
+  }
 
 }
