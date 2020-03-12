@@ -18,7 +18,7 @@ public class BookingService {
     public  BookingService(){}
 
     public void writeToFile(String s){
-      File file = new File("src/main/java/app/files/Bookings.txt");
+      File file = new File("src/app/files/Bookings.txt");
       try {
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         bw.write(s);

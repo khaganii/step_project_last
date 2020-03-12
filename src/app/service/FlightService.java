@@ -3,7 +3,6 @@ package app.service;
 import app.console.ConsoleMain;
 import app.dao.FlightDAO;
 import app.entities.Flight;
-import app.library.Main_Menu;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -14,7 +13,6 @@ import java.util.List;
 public class FlightService {
   ConsoleMain console = new ConsoleMain();
   FlightDAO flightDAO = new FlightDAO();
-  Main_Menu main_menu = new Main_Menu();
 
   public void printToBoardAll(){
     List<Flight> flights = new ArrayList<>(flightDAO.getAll());
@@ -31,7 +29,13 @@ public class FlightService {
   }
 
   public void printTOBoardOne(int id){
-    console.printLn(represent(flightDAO.get(id)));
+    if(flightDAO.get(id) != null){
+      console.printLn(represent(flightDAO.get(id)));
+    }
+    else {
+      console.printLn("Flight not found!");
+    }
+    console.printLn("\n");
   }
   public String represent(Flight flight){
     return "    - Flight ID: " + flight.getId() + " | From " + flight.getFrom() + " To " + flight.getTo() + " | Date: " + flight.getTime() + " | Free seats: " + flight.getFreeSeats() + " | Max seats: " + flight.getAllSeats();
@@ -76,8 +80,9 @@ public class FlightService {
   {
     List<Flight> flightsByTime = new ArrayList<>();
     for (Flight f: flights) {
-      String flightTime = f.getTime();
-      if (time.equals(flightTime))
+      String flightDateTime = f.getTime();
+      String [] arr = flightDateTime.split(" ");
+      if (time.equals(arr[0]))
       {
         console.printLn(represent(f));
         flightsByTime.add(f);
@@ -97,49 +102,6 @@ public class FlightService {
       }
     }
     return flightsByTickets;
-  }
-
-  public void backToMainMenu(){
-    console.printLn("                 ===== Results Not Found =====               ");
-    searching();
-    console.printLn("Enter '0' (zero) to back 'MAIN MENU' !");
-    console.printLn("Enter something! >>");
-    if (console.readLn().equals("0")) main_menu.showMenu();
-    else searching();
-  }
-
-  public void searching(){
-    console.printLn(" === Enter Destination Where you wanna go! === ");
-    String destination = console.readLn();
-    console.printLn("                 ===== Results for your destination =====               ");
-    console.printLn("");
-    List<Flight> flightsByDestination = new ArrayList<>(printSearchByDestination(destination.trim()));
-
-    if(flightsByDestination.size() != 0){
-      console.printLn(" === Enter Date When you wanna go! Ex: (2020/03/11 YYYY/MM/DD) === ");
-      String time = console.readLn();
-      List<Flight> flightsByTime = new ArrayList<>(printSearchByTime(flightsByDestination, time.trim()));
-
-      if(flightsByTime.size() != 0){
-        console.printLn(" === Enter Number of Tickets! === ");
-        int tickets = main_menu.enter_number();
-        List<Flight> flightsByTicket = new ArrayList<>(printSearchByTickets(flightsByTime, tickets));
-
-        if (flightsByTicket.size() != 0){
-          console.printLn("Start to book");
-          //bookingController.book(tickets, flightsByTicket.get(0));
-        }
-        else {
-          backToMainMenu();
-        }
-      }
-      else {
-        backToMainMenu();
-      }
-    }
-    else {
-      backToMainMenu();
-    }
   }
 
 }

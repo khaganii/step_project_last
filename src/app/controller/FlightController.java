@@ -1,13 +1,17 @@
 package app.controller;
 
 import app.console.ConsoleMain;
-import app.library.Main_Menu;
+import app.entities.Flight;
+import app.library.EnterNumber;
 import app.service.FlightService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FlightController {
   ConsoleMain console = new ConsoleMain();
   FlightService flightService = new FlightService();
-  Main_Menu main_menu = new Main_Menu();
+  EnterNumber enterNumber = new EnterNumber();
 
   public void showBoard(){
     flightService.printToBoardAll();
@@ -15,12 +19,45 @@ public class FlightController {
 
   public void showFlight(){
     System.out.println("\n      === Please, Enter flight ID ! ===");
-    int id = main_menu.enter_number();
+    int id = enterNumber.enter_number();
     console.printLn("");
     flightService.printTOBoardOne(id);
   }
 
-  public void searchAndBook() {
-    //flightService.searching();
+  public boolean searching(){
+    console.printLn(" === Enter Destination Where you wanna go! or Enter '0' (zero) to back 'MAIN MENU' ! === ");
+    String destination = console.readLn().trim();
+    if(backToMainMenu(destination)) return true;
+    console.printLn("                 ===== Results for your destination =====               ");
+    console.printLn("");
+    List<Flight> flightsByDestination = new ArrayList<>(flightService.printSearchByDestination(destination.trim()));
+
+    if(flightsByDestination.size() != 0){
+      console.printLn(" === Enter Date When you wanna go! Ex: (2020/03/11 YYYY/MM/DD) or Enter '0' (zero) to back 'MAIN MENU' ! === ");
+      String time = console.readLn().trim();
+      if(backToMainMenu(time)) return true;
+      List<Flight> flightsByTime = new ArrayList<>(flightService.printSearchByTime(flightsByDestination, time.trim()));
+
+      if(flightsByTime.size() != 0){
+        console.printLn(" === Enter Number of Tickets! ===  or Enter '0' (zero) to back 'MAIN MENU' !");
+        int tickets = enterNumber.enter_number();
+        if(backToMainMenu(String.valueOf(tickets))) return true;
+        List<Flight> flightsByTicket = new ArrayList<>(flightService.printSearchByTickets(flightsByTime, tickets));
+
+        if (flightsByTicket.size() != 0){
+          console.printLn("Start to book");
+          //bookingController.book(tickets, flightsByTicket.get(0));
+        }
+        else console.printLn("                 ===== Results Not Found =====               \n");
+      }
+      else console.printLn("                 ===== Results Not Found =====               \n");
     }
+    else console.printLn("                 ===== Results Not Found =====               \n");
+
+    return false;
+  }
+
+  public boolean backToMainMenu(String a){
+    return a.trim().equals("0");
+  }
 }
