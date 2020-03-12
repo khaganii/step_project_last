@@ -4,7 +4,6 @@ import app.console.ConsoleMain;
 import app.dao.FlightDAO;
 import app.entities.Flight;
 import app.library.Main_Menu;
-import app.library.Menu_operations;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ public class FlightService {
   ConsoleMain console = new ConsoleMain();
   FlightDAO flightDAO = new FlightDAO();
   Main_Menu main_menu = new Main_Menu();
-  Menu_operations menu_operations = new Menu_operations();
 
   public void printToBoardAll(){
     List<Flight> flights = new ArrayList<>(flightDAO.getAll());
@@ -124,7 +122,7 @@ public class FlightService {
 
       if(flightsByTime.size() != 0){
         console.printLn(" === Enter Number of Tickets! === ");
-        int tickets = menu_operations.enter_number();
+        int tickets = main_menu.enter_number();
         List<Flight> flightsByTicket = new ArrayList<>(printSearchByTickets(flightsByTime, tickets));
 
         if (flightsByTicket.size() != 0){
