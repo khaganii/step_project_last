@@ -1,11 +1,7 @@
 package app.library;
 
-
-import app.console.Console;
 import app.console.ConsoleMain;
 import app.controller.FlightController;
-import app.dao.FlightDAO;
-import app.service.FlightService;
 
 public class Menu_operations {
   ConsoleMain console = new ConsoleMain();
@@ -39,7 +35,7 @@ public class Menu_operations {
         main_menu.showMenu();
         break;
       case 3:
-        flightController.searching();
+        flightController.searchAndBook();
         main_menu.showMenu();
         break;
       case 4:
