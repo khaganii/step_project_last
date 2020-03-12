@@ -1,6 +1,7 @@
 package app;
 
 import app.console.ConsoleMain;
+import app.controller.BookingController;
 import app.controller.FlightController;
 import app.library.EnterNumber;
 import app.library.FillingFiles;
@@ -10,7 +11,9 @@ public class Main {
       FillingFiles fillingFiles = new FillingFiles();
       EnterNumber enterNumber = new EnterNumber();
       ConsoleMain console = new ConsoleMain();
+      BookingController bookingController = new BookingController();
       FlightController flightController = new FlightController();
+
       fillingFiles.fillFlights();
       fillingFiles.fillBookings();
       boolean continuing = true;
@@ -36,8 +39,9 @@ public class Main {
             break;
           case 3:
             flightController.searching();
+            break;
           case 4:
-            System.out.println("item4");
+            bookingController.cancelBooking();
             break;
           case 5:
             System.out.println("item5");

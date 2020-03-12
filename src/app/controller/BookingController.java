@@ -1,10 +1,19 @@
 package app.controller;
 
-import app.console.Console;
+
+import app.console.ConsoleMain;
+import app.library.EnterNumber;
 import app.service.BookingService;
 
 public class BookingController {
-    public BookingController() {
+  ConsoleMain console = new ConsoleMain();
+  EnterNumber enterNumber = new EnterNumber();
+  BookingService bookingService = new BookingService();
 
-    }
+  public void cancelBooking() {
+    console.printLn("Please Enter Booking ID: ");
+    int id = enterNumber.enter_number();
+    console.printLn("");
+    bookingService.cancelBooking(id);
+  }
 }

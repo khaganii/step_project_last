@@ -26,6 +26,6 @@ public class Flight {
 
     @Override
     public String toString() {
-        return String.format("ID: %s | %s to %s | %s | max seats: %d", id, from, to, time, allSeats);
+        return String.format("ID: %d | %s to %s | %s | maxSeats: %d", id, from, to, time, allSeats);
     }
 }

@@ -1,6 +1,7 @@
 package app.service;
 
 import app.console.ConsoleMain;
+import app.dao.BookingDAO;
 import app.dao.FlightDAO;
 import app.entities.Flight;
 
@@ -18,7 +19,7 @@ public class FlightService {
     List<Flight> flights = new ArrayList<>(flightDAO.getAll());
     console.printLn("------------------------------------------------------------------------------------");
     console.print("| ");
-    console.print("asdfghrjfghfdvdfvdssd feffd");
+    console.print("                           FLIGHTS IN LAST 24 HOURS                             ");
     console.print(" |\n");
     console.print("------------------------------------------------------------------------------------\n");
     for (Flight f:flights) {
@@ -37,6 +38,7 @@ public class FlightService {
     }
     console.printLn("\n");
   }
+
   public String represent(Flight flight){
     return "    - Flight ID: " + flight.getId() + " | From " + flight.getFrom() + " To " + flight.getTo() + " | Date: " + flight.getTime() + " | Free seats: " + flight.getFreeSeats() + " | Max seats: " + flight.getAllSeats();
   }
@@ -52,13 +54,13 @@ public class FlightService {
 
 
   public void writeToFile(String s){
-    File file = new File("src/main/java/app/files/Flights.txt");
+    File file = new File("src/app/files/Flights.txt");
     try {
       BufferedWriter bw = new BufferedWriter(new FileWriter(file));
       bw.write(s);
       bw.close();
     }   catch (IOException ex){
-      console.print("IO EXCEPTION FOUND!");
+      console.printLn("IO EXCEPTION FOUND!");
     }
   }
 

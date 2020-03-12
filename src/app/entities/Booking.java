@@ -10,12 +10,12 @@ public class Booking {
       this.person = person;
       this.flight = flight;
     }
-    public int getBookingIdId() { return bookingId; }
+    public int getBookingId() { return bookingId; }
     public Person getPerson() { return person; }
     public Flight getFlight() { return flight; }
 
     @Override
     public String toString() {
-        return String.format("BOOKING ID: %d , PERSON{ %s } , FLIGHT{ %s }", bookingId, person.toString(), flight.toString());
+        return String.format("BOOKING ID: %d , PERSON{%s} , FLIGHT{%s}", bookingId, person.toString(), flight.toString());
     }
 }
