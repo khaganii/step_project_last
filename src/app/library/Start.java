@@ -42,7 +42,7 @@ public class Start {
             bookingController.cancelBooking();
             break;
           case 5:
-            System.out.println("item5");
+            bookingController.myFlights();
             break;
           case 6:
             System.out.println("\n\n##########  Thanks for choosing us!  ##########\n\n");

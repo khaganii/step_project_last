@@ -6,7 +6,7 @@ public class EnterNumber {
   ConsoleMain console = new ConsoleMain();
   public int enter_number() {
     int number = 0;
-    console.print("\nEnter a number: \n");
+    console.print("\nEnter a number: ");
     boolean t = true;
     while (t) {
       try {

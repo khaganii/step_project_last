@@ -3,6 +3,7 @@ package app.controller;
 import app.console.ConsoleMain;
 import app.entities.Flight;
 import app.library.EnterNumber;
+import app.service.BookingService;
 import app.service.FlightService;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class FlightController {
   ConsoleMain console = new ConsoleMain();
   FlightService flightService = new FlightService();
   EnterNumber enterNumber = new EnterNumber();
+  BookingService bookingService = new BookingService();
 
   public void showBoard(){
     flightService.printToBoardAll();
@@ -53,10 +55,22 @@ public class FlightController {
         console.printLn("                 ===== Results for your destination , time and ticket number =====               ");
         console.printLn("");
         List<Flight> flightsByTicket = new ArrayList<>(flightService.printSearchByTickets(flightsByTime, tickets));
-
+        int flightId;
+        Flight filteredFlight = null;
         if (flightsByTicket.size() != 0){
+          if(flightsByTicket.size()>1){
+            console.printLn("Please Select Flight ID: ");
+            flightId = enterNumber.enter_number();
+            for (Flight f:flightsByTicket) {
+              if(f.getId() == flightId)
+              filteredFlight = f;
+            }
+          }
+          else {
+            filteredFlight = flightsByTicket.get(0);
+          }
           console.printLn("\n             =====  Start to book  =====");
-          //bookingController.book(tickets, flightsByTicket.get(0));
+          bookingService.book(tickets, filteredFlight);
         }
         else console.printLn("                 ---  )-: Flights Not Found :-(  ---               \n");
       }

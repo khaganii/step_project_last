@@ -12,7 +12,6 @@ import java.util.*;
 
 public class FillingFiles {
   Random random = new Random();
-  ConsoleMain console = new ConsoleMain();
   public void fillFlights(){
     Map<String, Integer> Cities_seats = new HashMap<>();
     FlightService flightService = new FlightService();
@@ -72,18 +71,17 @@ public class FillingFiles {
         sb.append("\n");
       }
     }
-    //File file = new File("src/app/files/Bookings.txt");
-   // if ((bookingService.check_space(file))){
+    File file = new File("src/app/files/Bookings.txt");
+    if ((bookingService.check_space(file))){
       bookingService.writeToFile(sb.toString());
-    //}
+    }
   }
 
   public Person MakePerson(){
     List<String> names = new ArrayList<>(Arrays.asList("Oliver", "Jack", "Harry", "Jacob", "Charlie", "Thomas", "George", "Oscar", "Olivia", "Lily", "Sophie", "Poppy"));
     List<String> surnames = new ArrayList<>(Arrays.asList("Smith", "Jones", "Williams", "Brown", "Davies", "Robinson", "Thompson", "Walker", "White", "Edwards", "Harris", "Linen"));
     Random random = new Random();
-    Person person =  new Person(names.get(random.nextInt(names.size())), surnames.get(random.nextInt(names.size())));
-    return person;
+    return new Person(names.get(random.nextInt(names.size())), surnames.get(random.nextInt(names.size())));
   }
 
   public static String MakeTime(){

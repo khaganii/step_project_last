@@ -71,7 +71,7 @@ public class FlightService {
     List<Flight> flightsByDestination = new ArrayList<>();
     List<Flight> flights = new ArrayList<>(flightDAO.getAll());
     for (Flight f: flights) {
-      if (f.getTo().toLowerCase().equals(dest))
+      if (f.getTo().toLowerCase().equals(dest.toLowerCase()))
       {
         console.printLn(represent(f));
         flightsByDestination.add(f);

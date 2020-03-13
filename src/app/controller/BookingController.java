@@ -16,4 +16,8 @@ public class BookingController {
     console.printLn("");
     bookingService.cancelBooking(id);
   }
+
+  public void myFlights() {
+    bookingService.getAllBookings();
+  }
 }
