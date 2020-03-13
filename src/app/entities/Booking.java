@@ -14,8 +14,12 @@ public class Booking {
     public Person getPerson() { return person; }
     public Flight getFlight() { return flight; }
 
-    @Override
+  public void setFlight(Flight flight) {
+    this.flight = flight;
+  }
+
+  @Override
     public String toString() {
-        return String.format("BOOKING ID: %d , PERSON{%s} , FLIGHT{%s}", bookingId, person.toString(), flight.toString());
+        return String.format("BOOKING ID: %d , PERSON{ %s } , FLIGHT{%s }", bookingId, person.toString(), flight.toString());
     }
 }

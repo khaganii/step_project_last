@@ -24,7 +24,11 @@ public class Flight {
     public int getAllSeats() { return allSeats; }
     public int getFreeSeats() { return freeSeats; }
 
-    @Override
+  public void setFreeSeats(int freeSeats) {
+    this.freeSeats = freeSeats;
+  }
+
+  @Override
     public String toString() {
         return String.format("ID: %d | %s to %s | %s | maxSeats: %d", id, from, to, time, allSeats);
     }

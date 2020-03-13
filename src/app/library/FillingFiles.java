@@ -7,7 +7,7 @@ import app.entities.Flight;
 import app.entities.Person;
 import app.service.BookingService;
 import app.service.FlightService;
-
+import java.io.File;
 import java.util.*;
 
 public class FillingFiles {
@@ -50,7 +50,10 @@ public class FillingFiles {
       sb.append(Cities_seats.get(city));
       sb.append("\n");
     }
-    flightService.writeToFile(sb.toString());
+    File file = new File("src/app/files/Flights.txt");
+    if ((flightService.check_space(file))){
+      flightService.writeToFile(sb.toString());
+    }
   }
 
   public void fillBookings(){
@@ -69,7 +72,10 @@ public class FillingFiles {
         sb.append("\n");
       }
     }
-    bookingService.writeToFile(sb.toString());
+    //File file = new File("src/app/files/Bookings.txt");
+   // if ((bookingService.check_space(file))){
+      bookingService.writeToFile(sb.toString());
+    //}
   }
 
   public Person MakePerson(){

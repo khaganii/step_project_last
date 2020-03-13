@@ -41,6 +41,7 @@ public class FlightController {
         return true;
       }
       console.printLn("                 ===== Results for your destination and date =====               ");
+      console.printLn("");
       List<Flight> flightsByTime = new ArrayList<>(flightService.printSearchByTime(flightsByDestination, time.trim()));
 
       if(flightsByTime.size() != 0){
@@ -50,6 +51,7 @@ public class FlightController {
           return true;
         }
         console.printLn("                 ===== Results for your destination , time and ticket number =====               ");
+        console.printLn("");
         List<Flight> flightsByTicket = new ArrayList<>(flightService.printSearchByTickets(flightsByTime, tickets));
 
         if (flightsByTicket.size() != 0){

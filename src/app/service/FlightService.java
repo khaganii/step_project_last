@@ -51,8 +51,6 @@ public class FlightService {
     return d1.isBefore(dateTime); //data_time is before d1
   }
 
-
-
   public void writeToFile(String s){
     File file = new File("src/app/files/Flights.txt");
     try {
@@ -62,6 +60,10 @@ public class FlightService {
     }   catch (IOException ex){
       console.printLn("IO EXCEPTION FOUND!");
     }
+  }
+
+  public boolean check_space(File file){
+    return (file.length() == 0);
   }
 
   public List<Flight> printSearchByDestination(String dest)
